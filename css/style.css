@@ -1,0 +1,88 @@
+
+* {
+    font-family: 'IBM Plex Sans KR', sans-serif;
+}
+
+
+a {
+    color: black;
+}
+
+body {
+    background-color: white;
+}
+
+
+.dropdown-item {
+    cursor: pointer;
+}
+
+.dropdown-item:hover {
+    background-color: #D1C2E9 !important;
+    color: white !important;
+}
+
+
+.round-btn {
+    padding-right: 10px;
+    border-radius: 20px;
+    font-size: 15px;
+    border-color: #D1C2E9;
+    background-color: inherit;
+    color: black;
+    width: 100px;
+}
+
+.round-btn:hover {
+    background-color: #D1C2E9;
+    color: white;
+    transition: 0.7s;
+}
+
+.btn-div {
+    padding-right: 20px;
+}
+
+.btn-div > .active {
+    color: white;
+    background-color: #D1C2E9 !important;
+    border-color: #D1C2E9;
+}
+
+
+.goods-posters-row {
+    width: 100%;
+}
+
+.poster {
+    width: 250px;
+    margin-left: 10px;
+    text-align: center;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    cursor: pointer;
+}
+
+.goods-poster-img {
+    height: auto;
+    flex: 1;
+    border-radius: 10px;
+}
+
+.posters-div {
+    margin-top: 40px;
+}
+
+.goods-title {
+    padding-top: 10px;
+    margin-top: auto;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.category-a {
+    cursor: pointer;
+}
+

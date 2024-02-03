@@ -1,0 +1,135 @@
+/* 전체 페이지에 대한 기본 스타일 */
+body {
+    /*background-color: #f5f5f5;*/
+    margin: 0;
+    padding: 0;
+}
+
+/* 컨테이너 스타일 */
+.container {
+    max-width: 800px; /* 적절한 최대 너비 설정 */
+    margin: 20px auto; /* 중앙 정렬 */
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 라벨과 인풋 필드 스타일 */
+label {
+    display: block;
+    margin-top: 10px;
+    color: #333;
+}
+
+input[type="text"],
+input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid black;
+    border-radius: 4px;
+    box-sizing: border-box; /* Border and padding should be included in width */
+}
+
+/* 테이블 스타일 */
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #f8f8f8;
+}
+
+/* 버튼 스타일 */
+.place-btn-div > .place-btn {
+    padding: 10px 15px;
+    margin-top: 20px;
+    border: 1px solid #8637DF;
+    border-radius: 4px;
+    background-color: #8637DF;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.place-btn-div > .place-btn:hover {
+    background-color: #8637DF;
+    color: white;
+}
+
+#createPlaceButton {
+    border: 1px solid #FADAD8;
+    background-color: #FADAD8;
+    color: white;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+#createPlaceButton:hover {
+    background-color: #FADAD8;
+    color: white;
+}
+
+#goodsInfoPage {
+    background-color: #A593E0;
+    color: white;
+    padding: 10px 15px;
+    border: 1px solid #A593E0;
+    cursor: pointer;
+    float: right;
+}
+
+#goodsInfoPage:hover {
+    background-color: #A593E0;
+    color: white;
+}
+
+
+/* 구역 제거 버튼 스타일 */
+#zonesTable > tbody > tr > td > .remove-zone {
+    border: 1px solid red;
+    background-color: red;
+    color: white;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+#zonesTable > tbody > tr > td > .remove-zone:hover {
+    background-color: red;
+    color: white;
+}
+
+/* 다음 페이지 버튼 스타일 */
+.place-btn-div > #goodsInfoPageButton {
+    float: right;
+    padding: 10px 15px;
+    background-color: inherit; /* Bootstrap primary blue */
+    color: white;
+    border-radius: 4px;
+    border: 1px solid #8637DF;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+.place-btn-div > #goodsInfoPageButton:hover {
+    background-color: #8637DF;
+}
+
+.section {
+    margin-bottom: 20px; /* 섹션 간 간격을 주기 위해 margin-bottom 추가 */
+}
+
+.zones-section {
+    background-color: #f8f8f8; /* 구역명 입력 섹션 배경색 변경 */
+    padding: 10px; /* 패딩 추가 */
+    border-radius: 4px; /* 모서리 둥글게 */
+}
