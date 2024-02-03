@@ -56,9 +56,9 @@ function displayReservation(data) {
                 );
             });
 
+        var now = new Date();
         let cancelBtn = $('<button>').addClass("btn-danger btn").text("취소")
             .on("click", function () {
-                var now = new Date();
                 if (now.getTime() > data.content[i].canelDeadline) {
                     errorAlert("취소 가능한 날짜가 지났습니다.");
                     return;
@@ -75,7 +75,11 @@ function displayReservation(data) {
 
 
         if (data.content[i].status === "OK") {
-            tr.append($('<td>').append($('<div>').append(btn).append(cancelBtn)));
+            if (now.getTime() <= data.content[i].cancelDeadline) {
+                tr.append($('<td>').append($('<div>').append(btn).append(cancelBtn)));
+            } else {
+                tr.append($('<td>').append($('<div>').append(btn)));
+            }
         } else {
             tr.append($('<td>'));
         }
