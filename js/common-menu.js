@@ -246,36 +246,95 @@ function displayData(code, data) {
         $(".list-tb-body").append(tr);
     }
 
+
     let totalPage = data.totalPages;
-    for (let i = 0; i < totalPage; i++) {
-        const pageNumber = i + 1;
+    let currentPage = data.number + 1; // 현재 페이지는 0부터 시작하는데, 표시는 1부터 시작하므로 +1
+
+    const displayRange = 3; // 현재 페이지를 중심으로 보여질 페이지 범위
+
+    let startPage = Math.max(1, currentPage - displayRange); // 시작 페이지
+    let endPage = Math.min(totalPage, currentPage + displayRange); // 끝 페이지
+
+    for (let i = startPage; i <= endPage; i++) {
+        const pageNumber = i;
         let link = $('<a>');
         link.addClass('list-a');
-        link.href = '#';
+        link.attr('href', '#');
         link.text(pageNumber);
 
-        if (i === data.number) {
+        if (i === currentPage) {
             link.addClass('now');
         }
 
         if (code === 'P00000') {
             link.on("click", function () {
                 reissueToken((token => {
-                        getPointChargeList(token, i);
+                        getPointChargeList(token, i - 1);
                     }
                 ));
             });
         } else {
             link.on("click", function () {
                 reissueToken((token => {
-                        getPointList(token, i);
+                        getPointList(token, i - 1);
                     }
                 ));
             });
         }
 
         $(".pagination").append(link);
+    }
 
+// '<' 표시
+    if (startPage > 1) {
+        let prevLink = $('<a>');
+        prevLink.addClass('list-a');
+        prevLink.attr('href', '#');
+        prevLink.text('<');
+
+        if (code === 'P00000') {
+            prevLink.on("click", function () {
+                reissueToken((token => {
+                        getPointChargeList(token, startPage - displayRange - 2);
+                    }
+                ));
+            });
+        } else {
+            prevLink.on("click", function () {
+                reissueToken((token => {
+                        getPointList(token, startPage - displayRange - 2);
+                    }
+                ));
+            });
+        }
+
+        $(".pagination").prepend(prevLink);
+    }
+
+// '>' 표시
+    if (endPage < totalPage) {
+        let nextLink = $('<a>');
+        nextLink.addClass('list-a');
+        nextLink.attr('href', '#');
+        nextLink.text('>');
+
+        if (code === 'P00000') {
+            nextLink.on("click", function () {
+                reissueToken((token => {
+                        getPointChargeList(token, endPage);
+                    }
+                ));
+            });
+        } else {
+            nextLink.on("click", function () {
+                reissueToken((token => {
+                        getPointList(token, endPage);
+                    }
+                ));
+            });
+        }
+
+        $(".pagination").append(nextLink);
     }
 }
 

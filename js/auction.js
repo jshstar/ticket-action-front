@@ -60,25 +60,63 @@ function displayAuction(data) {
     }
 
     let totalPage = data.totalPages;
-    for (let i = 0; i < totalPage; i++) {
-        const pageNumber = i + 1;
+    let currentPage = data.number + 1; // 현재 페이지는 0부터 시작하는데, 표시는 1부터 시작하므로 +1
+
+    const displayRange = 3; // 현재 페이지를 중심으로 보여질 페이지 범위
+
+    let startPage = Math.max(1, currentPage - displayRange); // 시작 페이지
+    let endPage = Math.min(totalPage, currentPage + displayRange); // 끝 페이지
+
+    for (let i = startPage; i <= endPage; i++) {
+        const pageNumber = i;
         let link = $('<a>');
         link.addClass('list-a');
-        link.href = '#';
+        link.attr('href', '#');
         link.text(pageNumber);
 
-        if (i === data.number) {
+        if (i === currentPage) {
             link.addClass('now');
         }
 
         link.on("click", function () {
             reissueToken((token => {
-                    getJoinedAuctionList(token, i);
-                }
-            ));
+                getJoinedAuctionList(token, i - 1); // 페이지는 0부터 시작하므로 1을 빼줍니다.
+            }));
         });
 
         $(".pagination").append(link);
+    }
+
+// '<' 표시
+    if (startPage > 1) {
+        let prevLink = $('<a>');
+        prevLink.addClass('list-a');
+        prevLink.attr('href', '#');
+        prevLink.text('<');
+
+        prevLink.on("click", function () {
+            reissueToken((token => {
+                getJoinedAuctionList(token, startPage - displayRange - 2); // 이전 범위의 마지막 페이지로 이동
+            }));
+        });
+
+        $(".pagination").prepend(prevLink);
+    }
+
+// '>' 표시
+    if (endPage < totalPage) {
+        let nextLink = $('<a>');
+        nextLink.addClass('list-a');
+        nextLink.attr('href', '#');
+        nextLink.text('>');
+
+        nextLink.on("click", function () {
+            reissueToken((token => {
+                getJoinedAuctionList(token, endPage); // 다음 범위의 첫 페이지로 이동
+            }));
+        });
+
+        $(".pagination").append(nextLink);
     }
 }
 
@@ -131,24 +169,62 @@ function displayBid(data) {
     }
 
     let totalPage = data.totalPages;
-    for (let i = 0; i < totalPage; i++) {
-        const pageNumber = i + 1;
+    let currentPage = data.number + 1; // 현재 페이지는 0부터 시작하는데, 표시는 1부터 시작하므로 +1
+
+    const displayRange = 3; // 현재 페이지를 중심으로 보여질 페이지 범위
+
+    let startPage = Math.max(1, currentPage - displayRange); // 시작 페이지
+    let endPage = Math.min(totalPage, currentPage + displayRange); // 끝 페이지
+
+    for (let i = startPage; i <= endPage; i++) {
+        const pageNumber = i;
         let link = $('<a>');
         link.addClass('list-a');
-        link.href = '#';
+        link.attr('href', '#');
         link.text(pageNumber);
 
-        if (i === data.number) {
+        if (i === currentPage) {
             link.addClass('now');
         }
 
         link.on("click", function () {
             reissueToken((token => {
-                    getJoinedAuctionList(token, i);
-                }
-            ));
+                getBidList(token, i - 1); // 페이지는 0부터 시작하므로 1을 빼줍니다.
+            }));
         });
 
         $(".pagination").append(link);
+    }
+
+// '<' 표시
+    if (startPage > 1) {
+        let prevLink = $('<a>');
+        prevLink.addClass('list-a');
+        prevLink.attr('href', '#');
+        prevLink.text('<');
+
+        prevLink.on("click", function () {
+            reissueToken((token => {
+                getBidList(token, startPage - displayRange - 2); // 이전 범위의 마지막 페이지로 이동
+            }));
+        });
+
+        $(".pagination").prepend(prevLink);
+    }
+
+// '>' 표시
+    if (endPage < totalPage) {
+        let nextLink = $('<a>');
+        nextLink.addClass('list-a');
+        nextLink.attr('href', '#');
+        nextLink.text('>');
+
+        nextLink.on("click", function () {
+            reissueToken((token => {
+                getBidList(token, endPage); // 다음 범위의 첫 페이지로 이동
+            }));
+        });
+
+        $(".pagination").append(nextLink);
     }
 }
